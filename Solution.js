@@ -92,3 +92,57 @@ var positiveSum = function (arr) {
     }
     return sum;
 };
+
+// Problem 7: Grasshopper — Summation
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var summation = function (num) {
+    return (num * (num + 1)) / 2; // Using the formula for the sum of the first n positive integers
+};
+
+// Problem 8: Convert a Boolean to a String
+/**
+ * @param {boolean} b
+ * @return {string}
+ */
+var booleanToString = function (b) {
+    return b.toString();
+};
+
+// Problem 9: Fizz Buzz
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n) {
+    const result = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            result.push("FizzBuzz");
+        } else if (i % 3 === 0) {
+            result.push("Fizz");
+        } else if (i % 5 === 0) {
+            result.push("Buzz");
+        } else {
+            result.push(i.toString());
+        }
+    }
+    return result;
+};
+
+// Problem 10: Running Sum of 1D Array
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var runningSum = function (nums) {
+    const result = [];
+    let sum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+        result.push(sum);
+    }
+    return result;
+};
