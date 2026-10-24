@@ -248,3 +248,139 @@ var merge = function (nums1, m, nums2, n) {
         k--;
     }
 };
+
+// Problem 16: 3Sum
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+var threeSum = function (nums) {
+    nums.sort((a, b) => a - b);
+
+    const result = [];
+
+    for (let i = 0; i < nums.length - 2; i++) {
+        // Skip duplicate first elements
+        if (i > 0 && nums[i] === nums[i - 1]) {
+            continue;
+        }
+
+        let left = i + 1;
+        let right = nums.length - 1;
+
+        while (left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
+
+            if (sum === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+
+                left++;
+                right--;
+
+                // Skip duplicate second elements
+                while (left < right && nums[left] === nums[left - 1]) {
+                    left++;
+                }
+
+                // Skip duplicate third elements
+                while (left < right && nums[right] === nums[right + 1]) {
+                    right--;
+                }
+            } else if (sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+
+    return result;
+};
+
+// Problem 17: Plus One
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+
+var plusOne = function (digits) {
+    for (let i = digits.length - 1; i >= 0; i--) {
+        if (digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+
+        digits[i] = 0;
+    }
+
+    digits.unshift(1);
+    return digits;
+};
+
+// Problem 18: Reverse String
+/**
+ * @param {string[]} s
+ * @return {void}
+ */
+var reverseString = function (s) {
+    let left = 0;
+    let right = s.length - 1;
+
+    while (left < right) {
+        // Swap the characters
+        [s[left], s[right]] = [s[right], s[left]];
+
+        left++;
+        right--;
+    }
+};
+
+// Problem 19: Length of Last Word
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+var lengthOfLastWord = function (s) {
+    let length = 0;
+    let i = s.length - 1;
+
+    // Skip trailing spaces
+    while (i >= 0 && s[i] === " ") {
+        i--;
+    }
+
+    // Count characters in the last word
+    while (i >= 0 && s[i] !== " ") {
+        length++;
+        i--;
+    }
+
+    return length;
+};
+
+// Problem 20: Longest Common Prefix
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+    if (strs.length === 0) {
+        return "";
+    }
+
+    let prefix = strs[0];
+
+    for (let i = 1; i < strs.length; i++) {
+        while (!strs[i].startsWith(prefix)) {
+            prefix = prefix.slice(0, -1);
+
+            if (prefix === "") {
+                return "";
+            }
+        }
+    }
+
+    return prefix;
+};
