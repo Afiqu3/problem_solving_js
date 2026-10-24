@@ -146,3 +146,105 @@ var runningSum = function (nums) {
     }
     return result;
 };
+
+// Problem 11: Richest Customer Wealth
+/**
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+var maximumWealth = function (accounts) {
+    let maxWealth = 0;
+    for (let customer of accounts) {
+        let totalWealth = customer.reduce((sum, account) => sum + account, 0); // Calculate the total wealth of the current customer
+        if (totalWealth > maxWealth) {
+            maxWealth = totalWealth;
+        }
+    }
+    return maxWealth;
+};
+
+// Problem 12: Remove Duplicates from Sorted Array
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+    if (nums.length === 0) return 0;
+
+    let k = 1; // Index for the next unique element
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+
+    return k;
+};
+
+// Problem 13: Contains Duplicate
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums) {
+    const seen = new Set();
+    for (const num of nums) {
+        if (seen.has(num)) {
+            return true;
+        }
+        seen.add(num);
+    }
+    return false;
+};
+
+// Problem 14: Move Zeroes
+/**
+ * @param {number[]} nums
+ * @return {void}
+ */
+var moveZeroes = function (nums) {
+    let k = 0; // Index for the next non-zero element
+
+    // Move all non-zero elements to the front
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== 0) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+
+    // Fill the remaining positions with zeros
+    while (k < nums.length) {
+        nums[k] = 0;
+        k++;
+    }
+};
+
+// Problem 15: Merge Sorted Array
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void}
+ */
+
+var merge = function (nums1, m, nums2, n) {
+    let i = m - 1;
+    let j = n - 1;
+    let k = m + n - 1;
+
+    while (j >= 0) {
+        if (i >= 0 && nums1[i] > nums2[j]) {
+            nums1[k] = nums1[i];
+            i--;
+        } else {
+            nums1[k] = nums2[j];
+            j--;
+        }
+
+        k--;
+    }
+};
